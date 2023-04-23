@@ -1,0 +1,18 @@
+.sb ::-webkit-scrollbar {
+  width: 1em;
+}
+
+.sb ::-webkit-scrollbar-track {
+  border-radius: 100vw;
+  margin-block: 0.5em;
+}
+
+.sb ::-webkit-scrollbar-thumb {
+  background: "#2dd4bf";
+  border-radius: 100vw;
+}
+
+.sb ::-webkit-scrollbar-thumb:hover {
+  background: "#2dd4bf";
+  border-radius: 100vw;
+}
