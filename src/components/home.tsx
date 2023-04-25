@@ -82,14 +82,10 @@ export default function HomeComp() {
         onMouseEnter={() => setSkillNotation(true)}
         ref={skillRef}
       >
-        <Projects
-          skillNotation={skillNotation}
-          work={work}
-          fadeStyle={fadeStyle}
-        />
+        <Projects work={work} fadeStyle={fadeStyle} />
         <div className="w-0.5 lg:mx-[5vw] bg-gray-600 lg:my-[10vh] h-0 lg:h-[80vh]"></div>
         <hr className="lg:invisible" />
-        <Skills skillNotation={skillNotation} colors={workData[work].colors} />
+        <Skills colors={workData[work].colors} />
         <hr />
       </section>
 

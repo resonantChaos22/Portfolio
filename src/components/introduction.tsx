@@ -3,21 +3,25 @@ import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 import { Underline } from "@/components/underline";
 import downArrow from "../../public/lottie/DownArrow.json";
 import Lottie, { Options } from "react-lottie";
+import { useInView } from "react-intersection-observer";
 
 export default function Introduction() {
   const [notation, setNotation] = useState(false);
   useEffect(() => {
-    setTimeout(() => setNotation(true), 2000);
+    setTimeout(() => setNotation(true), 1000);
   }, []);
+
+  const { ref, inView: visible, entry } = useInView();
 
   return (
     <>
       <div
         className="relative mt-20 font-tiltwarp text-gray-600 w-screen flex-row center px-10 lg:px-40 text-center md:text-xl sm:text-lg lg:text-2xl 2xl:text:3xl pb-32"
         onMouseEnter={() => setNotation(true)}
+        ref={ref}
       >
         <div>
-          <RoughNotationGroup show={notation}>
+          <RoughNotationGroup show={notation && visible}>
             Hi there, I am{" "}
             <div className="inline font-bold text-black">
               <RoughNotation

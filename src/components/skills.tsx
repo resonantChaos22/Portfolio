@@ -2,61 +2,44 @@ import { Wrapper } from "@/components/wrapper";
 import { useEffect, useRef, useState } from "react";
 import { RoughNotation } from "react-rough-notation";
 import { Box } from "./box";
+import { useInView } from "react-intersection-observer";
 
 interface skillProps {
-  skillNotation: boolean;
   colors: Array<Array<string>>;
 }
 
-export default function Skills({ skillNotation, colors }: skillProps) {
+export default function Skills({ colors }: skillProps) {
+  const { ref, inView: visible, entry } = useInView();
+
   const languages = ["JS", "C++", "Python", "TS"];
   const libs = ["Express", "React", "Sequelize", "PostgreSQL"];
   const others = ["Docker", "GCP", "Postman"];
   const future = ["Java", "Go"];
   const languageElems = languages.map((item, index) => (
-    <Box
-      key={index}
-      order={index}
-      toggle={skillNotation}
-      color={colors[0][index]}
-    >
+    <Box key={index} order={index} toggle={visible} color={colors[0][index]}>
       {item}
     </Box>
   ));
   const libElems = libs.map((item, index) => (
-    <Box
-      key={index}
-      order={index}
-      toggle={skillNotation}
-      color={colors[1][index]}
-    >
+    <Box key={index} order={index} toggle={visible} color={colors[1][index]}>
       {item}
     </Box>
   ));
   const otherElems = others.map((item, index) => (
-    <Box
-      key={index}
-      order={index}
-      toggle={skillNotation}
-      color={colors[2][index]}
-    >
+    <Box key={index} order={index} toggle={visible} color={colors[2][index]}>
       {item}
     </Box>
   ));
   const futureElems = future.map((item, index) => (
-    <Box
-      key={index}
-      order={index}
-      toggle={skillNotation}
-      color={colors[3][index]}
-    >
+    <Box key={index} order={index} toggle={visible} color={colors[3][index]}>
       {item}
     </Box>
   ));
+
   return (
-    <div className="lg:w-[35vw] min-h-[95vh] xs:h-[115vh]">
+    <div className="lg:w-[35vw] min-h-[95vh] xs:h-[115vh]" ref={ref}>
       <div className="relative text-teal-400 font-bold pt-2 2xl:pb-16 pb-10 2xl:text-9xl text-[5.5rem] xs:text-7xl">
-        <RoughNotation type="underline" show={skillNotation} padding={-10}>
+        <RoughNotation type="underline" show={visible} padding={-10}>
           Skills
         </RoughNotation>
       </div>
